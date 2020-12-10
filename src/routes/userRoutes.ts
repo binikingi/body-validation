@@ -13,7 +13,7 @@ export class TestMessageResponse {
     testResult!: number;
 }
 
-export function adduserRoutes(api: Api) {
+export function addUserRoutes(api: Api) {
     api.withRouter((router) => {
         router.get(
             "/test",
