@@ -1,6 +1,7 @@
 import { Expose } from "class-transformer";
 import { IsDefined, IsString, IsInt } from "class-validator";
 import { Api } from "../system/api";
+import { TransformDate } from "../system/customDecorators";
 
 export class TestMessageResponse {
     @IsDefined()
@@ -11,6 +12,10 @@ export class TestMessageResponse {
     @Expose()
     @IsInt()
     testResult!: number;
+    @IsDefined()
+    @Expose()
+    @TransformDate()
+    date!: Date
 }
 
 export function addUserRoutes(api: Api) {
@@ -18,10 +23,11 @@ export function addUserRoutes(api: Api) {
         router.get(
             "/test",
             TestMessageResponse,
-            async (_req) => {
+            async () => {
                 const a: TestMessageResponse = {
                     testName: "ok",
-                    testResult: 1
+                    testResult: 1,
+                    date: new Date()
                 };
 
                 return a;

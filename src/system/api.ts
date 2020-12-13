@@ -39,35 +39,39 @@ class ApiRouter {
         return this.router;
     }
 
-    post = <T, S>(path: string, reqType: ClassType<T>, resType: ClassType<S>, handler: (req: T) => Promise<S>) => {
+    post = <T, S>(path: string, reqType: ClassType<T>, resType: ClassType<S>, handler: (req: T, raw?: Request) => Promise<S>) => {
         return this.router.post(
             path,
             (req: Request, res: Response) => {
-                const testMessage = plainToClass(reqType, req.body);
-                validate(testMessage).then(errors => {
-                    if (errors.length > 0) {
-                        res.status(400).json(errors);
-                    } else {
-                        handler(testMessage).then(data => {
-                            const testResponse = plainToClass(resType, data);
-                            validate(testResponse).then(resErrors => {
-                                if (resErrors.length > 0) {
-                                    res.status(500).json(resErrors);
-                                } else {
-                                    res.status(200).json(testResponse);
-                                }
-                            })
-                        }).catch(error => {
-                            console.error(error);
-                        res.status(500).json({ message: "Error" })
-                        });
-                    }
-                });
+                try {
+                    const testMessage = plainToClass(reqType, req.body);
+                    validate(testMessage).then(errors => {
+                        if (errors.length > 0) {
+                            res.status(400).json(errors);
+                        } else {
+                            handler(testMessage, req).then(data => {
+                                const testResponse = plainToClass(resType, data);
+                                validate(testResponse).then(resErrors => {
+                                    if (resErrors.length > 0) {
+                                        res.status(500).json(resErrors);
+                                    } else {
+                                        res.status(200).json(testResponse);
+                                    }
+                                })
+                            }).catch(error => {
+                                console.error(error);
+                            res.status(500).json({ message: "Error" })
+                            });
+                        }
+                    });
+                } catch (error) {
+                    res.sendStatus(400);
+                }
             }
         )
     };
 
-    get = <S>(path: string, resType: ClassType<S>, handler: (req: Request) => Promise<S>) => {
+    get = <S>(path: string, resType: ClassType<S>, handler: (raw?: Request) => Promise<S>) => {
         return this.router.get(
             path,
             (req: Request, res: Response) => {

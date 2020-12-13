@@ -1082,13 +1082,18 @@
         "affectsGlobalScope": false
       },
       "./src/system/api.ts": {
-        "version": "28dfa57bfde5fd4f7950399388f8af1e5bc6a01ece23fcfbc62b0dd0272ac1dd",
-        "signature": "ceafc111611ce310b855cfc2b0d63f3ba25e0cd2da527cedc973fc0a1651b4c0",
+        "version": "5ae5b8f4ea738fe8da5e112daac12ba7d9baab80f741923336c3f04ae5595f63",
+        "signature": "6748c05c3e0565cb5113a47f747fe629fe06442906278dcf1ba2745ac0e54433",
+        "affectsGlobalScope": false
+      },
+      "./src/system/customDecorators.ts": {
+        "version": "6d7e15b63f14fe7dad657c13b6c818b6160d38032b4c33233dce45123ee93c67",
+        "signature": "b17ff27fde2ae6d49c49d6a928dae9b4a4c3ce264fea1bf13aba75f2bc51fa64",
         "affectsGlobalScope": false
       },
       "./src/routes/userRoutes.ts": {
-        "version": "d4b43bd42acca6348c83bc0e6b14e19d9a4b5aaeadf872641d878c2a730fedef",
-        "signature": "208c47e4947b9764d3997ebedb89cd62f7813591bd6f86e10a9749c96c8eaaa0",
+        "version": "6814bc1a05188a1eda14660aef5cb4b1d0341ae6fe13f406c800c39553b3b36a",
+        "signature": "27558c2f8da3db967146cb4f8a4c62c542e67ac01c7a68ae9ee42546faf851fc",
         "affectsGlobalScope": false
       },
       "./src/app.ts": {
@@ -1822,7 +1827,8 @@
       "./src/routes/userRoutes.ts": [
         "./node_modules/class-transformer/index.d.ts",
         "./node_modules/class-validator/types/index.d.ts",
-        "./src/system/api.ts"
+        "./src/system/api.ts",
+        "./src/system/customDecorators.ts"
       ],
       "./src/system/api.ts": [
         "./node_modules/@types/body-parser/index.d.ts",
@@ -1830,6 +1836,9 @@
         "./node_modules/class-transformer/ClassTransformer.d.ts",
         "./node_modules/class-transformer/index.d.ts",
         "./node_modules/class-validator/types/index.d.ts"
+      ],
+      "./src/system/customDecorators.ts": [
+        "./node_modules/class-transformer/index.d.ts"
       ]
     },
     "exportedModulesMap": {
@@ -2534,7 +2543,9 @@
         "./src/system/api.ts"
       ],
       "./src/system/api.ts": [
+        "./node_modules/@types/express-serve-static-core/index.d.ts",
         "./node_modules/@types/express/index.d.ts",
+        "./node_modules/@types/qs/index.d.ts",
         "./node_modules/class-transformer/ClassTransformer.d.ts"
       ]
     },
@@ -2757,7 +2768,8 @@
       "./node_modules/typescript/lib/lib.webworker.importscripts.d.ts",
       "./src/app.ts",
       "./src/routes/userRoutes.ts",
-      "./src/system/api.ts"
+      "./src/system/api.ts",
+      "./src/system/customDecorators.ts"
     ]
   },
   "version": "4.1.2"
